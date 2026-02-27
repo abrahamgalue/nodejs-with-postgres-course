@@ -1,0 +1,34 @@
+import boom from '@hapi/boom'
+
+import db from '../lib/postgres.js'
+
+class UserService {
+  constructor() {}
+
+  async create(data) {
+    return data
+  }
+
+  async find() {
+    const data = await db.query('SELECT * FROM tasks')
+
+    return data.rows
+  }
+
+  async findOne(id) {
+    return { id }
+  }
+
+  async update(id, changes) {
+    return {
+      id,
+      changes,
+    }
+  }
+
+  async delete(id) {
+    return { id }
+  }
+}
+
+export default UserService
