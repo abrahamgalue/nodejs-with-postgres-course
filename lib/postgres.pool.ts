@@ -1,18 +1,12 @@
-import { Client } from 'pg'
+import { Pool } from 'pg'
 import config from '../config/config.js'
 
 const USER = encodeURIComponent(config.dbUser)
 const PASSWORD = encodeURIComponent(config.dbPassword)
 const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`
 
-async function getConnection() {
-  const client = new Client({
-    connectionString: URI,
-  })
+const pool = new Pool({
+  connectionString: URI,
+})
 
-  await client.connect()
-
-  return client
-}
-
-export default getConnection
+export default pool

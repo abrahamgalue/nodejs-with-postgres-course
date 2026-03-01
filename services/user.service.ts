@@ -1,6 +1,6 @@
 import boom from '@hapi/boom'
 
-import db from '../lib/postgres.js'
+import db from '../lib/postgres.pool.js'
 
 class UserService {
   constructor() {}
