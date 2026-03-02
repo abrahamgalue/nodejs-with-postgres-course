@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import boom from '@hapi/boom'
+import sequelize from '../lib/sequelize.js'
 
 interface Product {
   id: string
@@ -45,11 +46,9 @@ class ProductsService {
   }
 
   async find() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.products)
-      }, 250)
-    })
+    const [data] = await sequelize.query('SELECT * FROM tasks')
+
+    return data
   }
 
   async findOne(id: Product['id']) {
