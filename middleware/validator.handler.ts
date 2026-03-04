@@ -6,7 +6,6 @@ function validatorHandler(schema, property) {
     const { error, value } = schema.validate(data, {
       abortEarly: false,
       stripUnknown: { objects: true, arrays: true },
-      convert: false,
     })
 
     if (error) {

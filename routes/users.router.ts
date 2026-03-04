@@ -12,9 +12,9 @@ const router = express.Router()
 const service = new UserService()
 
 router.get('/', async (req, res) => {
-  const categories = await service.find()
+  const users = await service.find()
 
-  res.json(categories)
+  res.json(users)
 })
 
 router.get(
@@ -23,9 +23,9 @@ router.get(
   async (req, res) => {
     const { id } = req.params
 
-    const category = await service.findOne(id)
+    const user = await service.findOne(id)
 
-    res.json(category)
+    res.json(user)
   },
 )
 
@@ -35,9 +35,9 @@ router.post(
   async (req, res) => {
     const body = req.body
 
-    const newCategory = await service.create(body)
+    const newUser = await service.create(body)
 
-    res.status(201).json(newCategory)
+    res.status(201).json(newUser)
   },
 )
 
@@ -49,9 +49,9 @@ router.patch(
     const { id } = req.params
     const body = req.body
 
-    const category = await service.update(id, body)
+    const updatedUser = await service.update(id, body)
 
-    res.json(category)
+    res.json(updatedUser)
   },
 )
 
