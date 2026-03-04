@@ -131,6 +131,7 @@ web_modules/
 .env.production.local
 .env.local
 postgres.env
+MySQL.env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -219,3 +220,4 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,linux,macos
 
 postgres_data
+mysql_data
