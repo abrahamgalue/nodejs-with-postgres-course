@@ -5,6 +5,7 @@ import {
   logErrors,
   errorHandler,
   boomErrorHandler,
+  ormErrorHandler,
 } from './middleware/error.handler.js'
 
 const app = express()
@@ -43,6 +44,7 @@ app.get('/v2', (req, res) => {
 routerApi(app)
 
 app.use(logErrors)
+app.use(ormErrorHandler)
 app.use(boomErrorHandler)
 app.use(errorHandler)
 
