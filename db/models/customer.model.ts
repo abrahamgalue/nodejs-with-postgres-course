@@ -1,4 +1,12 @@
-import { Model, DataTypes, type Sequelize, Association } from 'sequelize'
+import {
+  Model,
+  DataTypes,
+  type Sequelize,
+  type ModelStatic,
+  type InferAttributes,
+  type InferCreationAttributes,
+  type CreationOptional,
+} from 'sequelize'
 import { USER_TABLE } from './user.model.js'
 
 export const CUSTOMER_TABLE = 'customers'
@@ -33,6 +41,7 @@ export const CustomerSchema = {
     allowNull: false,
     type: DataTypes.INTEGER,
     field: 'user_id',
+    unique: true,
     references: {
       model: USER_TABLE,
       key: 'id',
@@ -42,8 +51,18 @@ export const CustomerSchema = {
   },
 }
 
-export class Customer extends Model {
-  static associate(models) {
+export class Customer extends Model<
+  InferAttributes<Customer>,
+  InferCreationAttributes<Customer>
+> {
+  declare id: CreationOptional<string>
+  declare name: string
+  declare lastName: string
+  declare phone: CreationOptional<string>
+  declare createdAt: CreationOptional<Date>
+  declare userId: CreationOptional<string>
+
+  static associate(models: Record<string, ModelStatic<any>>) {
     this.belongsTo(models.User, { as: 'user' })
   }
 

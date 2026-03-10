@@ -8,7 +8,11 @@ type CustomerType = {
   lastName: string
   phone?: string
   createdAt: Date
-  userId: string
+  user: {
+    email: string
+    password: string
+    role: string
+  }
 }
 
 type CreateCustomerType = Omit<CustomerType, 'id' | 'createdAt'>
@@ -20,7 +24,7 @@ class CustomerService {
 
   async create(data: CreateCustomerType) {
     try {
-      const newCustomer = await Customer.create(data)
+      const newCustomer = await Customer.create(data, { include: ['user'] })
 
       return newCustomer
     } catch (e) {
@@ -29,7 +33,9 @@ class CustomerService {
   }
 
   async find() {
-    const customer = await Customer.findAll()
+    const customer = await Customer.findAll({
+      include: ['user'],
+    })
 
     return customer
   }

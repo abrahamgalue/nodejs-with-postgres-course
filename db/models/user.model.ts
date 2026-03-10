@@ -1,4 +1,12 @@
-import { Model, DataTypes, type Sequelize, Association } from 'sequelize'
+import {
+  Model,
+  DataTypes,
+  type Sequelize,
+  type InferAttributes,
+  type InferCreationAttributes,
+  type CreationOptional,
+  type ModelStatic,
+} from 'sequelize'
 
 export const USER_TABLE = 'users'
 
@@ -31,9 +39,18 @@ export const UserSchema = {
   },
 }
 
-export class User extends Model {
-  static associate() {
-    // associate
+export class User extends Model<
+  InferAttributes<User>,
+  InferCreationAttributes<User>
+> {
+  declare id: CreationOptional<string>
+  declare email: string
+  declare password: string
+  declare role: string
+  declare createdAt: CreationOptional<Date>
+
+  static associate(models: Record<string, ModelStatic<any>>) {
+    this.hasOne(models.Customer, { as: 'customer', foreignKey: 'userId' })
   }
 
   static config(sequelize: Sequelize) {
