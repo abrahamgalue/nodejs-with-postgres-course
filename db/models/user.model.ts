@@ -43,7 +43,7 @@ export class User extends Model<
   InferAttributes<User>,
   InferCreationAttributes<User>
 > {
-  declare id: CreationOptional<string>
+  declare id: CreationOptional<number>
   declare email: string
   declare password: string
   declare role: string

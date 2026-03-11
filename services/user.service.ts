@@ -3,7 +3,7 @@ import boom from '@hapi/boom'
 import { User } from '../db/models/user.model.js'
 
 type UserType = {
-  id: string
+  id: number
   email: string
   password: string
   role: string

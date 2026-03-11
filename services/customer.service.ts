@@ -3,7 +3,7 @@ import boom from '@hapi/boom'
 import { Customer } from '../db/models/customer.model.js'
 
 type CustomerType = {
-  id: string
+  id: number
   name: string
   lastName: string
   phone?: string

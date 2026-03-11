@@ -55,12 +55,12 @@ export class Customer extends Model<
   InferAttributes<Customer>,
   InferCreationAttributes<Customer>
 > {
-  declare id: CreationOptional<string>
+  declare id: CreationOptional<number>
   declare name: string
   declare lastName: string
   declare phone: CreationOptional<string>
   declare createdAt: CreationOptional<Date>
-  declare userId: CreationOptional<string>
+  declare userId: CreationOptional<number>
 
   static associate(models: Record<string, ModelStatic<any>>) {
     this.belongsTo(models.User, { as: 'user' })
