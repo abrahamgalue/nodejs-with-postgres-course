@@ -61,7 +61,7 @@ export class Product extends Model<
   declare name: string
   declare image: string
   declare createdAt: CreationOptional<Date>
-  declare categoryId: CreationOptional<number>
+  declare categoryId: number
 
   static associate(models: Record<string, ModelStatic<any>>) {
     this.belongsTo(models.Category, { as: 'category' })
