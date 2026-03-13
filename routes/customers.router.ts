@@ -23,7 +23,7 @@ router.get(
   async (req, res) => {
     const { id } = req.params
 
-    const customer = await service.findOne(id)
+    const customer = await service.findOne(Number(id))
 
     res.json(customer)
   },
@@ -49,7 +49,7 @@ router.patch(
     const { id } = req.params
     const body = req.body
 
-    const updatedCustomer = await service.update(id, body)
+    const updatedCustomer = await service.update(Number(id), body)
 
     res.json(updatedCustomer)
   },
@@ -61,7 +61,7 @@ router.delete(
   async (req, res) => {
     const { id } = req.params
 
-    await service.delete(id)
+    await service.delete(Number(id))
 
     res.status(201).json({ id })
   },

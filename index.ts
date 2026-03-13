@@ -17,11 +17,11 @@ const whitelist = [
 ]
 const options: CorsOptions = {
   origin: (origin, callback) => {
-    if (whitelist.includes(origin)) {
+    if (!origin) {
       return callback(null, true)
     }
 
-    if (!origin) {
+    if (whitelist.includes(origin)) {
       return callback(null, true)
     }
 
