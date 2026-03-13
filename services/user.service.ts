@@ -1,6 +1,8 @@
 import boom from '@hapi/boom'
 
-import { User } from '../db/models/user.model.js'
+import sequelize from '../lib/sequelize.js'
+
+const { models } = sequelize
 
 type UserType = {
   id: number
@@ -17,13 +19,13 @@ class UserService {
   constructor() {}
 
   async create(data: UserType) {
-    const user = await User.create(data)
+    const user = await models.User.create(data)
 
     return user
   }
 
   async find() {
-    const data = await User.findAll({
+    const data = await models.User.findAll({
       include: ['customer'],
     })
 
@@ -31,7 +33,7 @@ class UserService {
   }
 
   async findOne(id: UserType['id']) {
-    const user = await User.findByPk(id)
+    const user = await models.User.findByPk(id)
 
     if (!user) throw boom.notFound('User not found')
 
