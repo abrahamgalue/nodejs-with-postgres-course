@@ -31,7 +31,9 @@ class CategoryService {
   }
 
   async findOne(id: CategoryType['id']) {
-    const category = await models.Category.findByPk(id, { include: 'products' })
+    const category = await models.Category.findByPk(id, {
+      include: ['products'],
+    })
 
     return category
   }
