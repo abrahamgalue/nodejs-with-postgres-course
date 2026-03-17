@@ -65,6 +65,12 @@ export class Product extends Model<
 
   static associate(models: Record<string, ModelStatic<any>>) {
     this.belongsTo(models.Category, { as: 'category' })
+    this.belongsToMany(models.Order, {
+      as: 'orders',
+      through: models.OrderProduct,
+      foreignKey: 'productId',
+      otherKey: 'orderId',
+    })
   }
 
   static config(sequelize: Sequelize) {

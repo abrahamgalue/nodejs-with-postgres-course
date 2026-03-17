@@ -3,7 +3,7 @@ import sequelize from '../lib/sequelize.js'
 
 const { models } = sequelize
 
-type ProductType = {
+export type ProductType = {
   id: number
   name: string
   price: number

@@ -44,7 +44,7 @@ export class Category extends Model<
   declare createdAt: CreationOptional<Date>
 
   static associate(models: Record<string, ModelStatic<any>>) {
-    this.hasMany(models.Product, { as: 'products', foreignKey: 'category_id' })
+    this.hasMany(models.Product, { as: 'products', foreignKey: 'categoryId' })
   }
 
   static config(sequelize: Sequelize) {
