@@ -16,7 +16,11 @@ function validatorHandler(schema: Schema, property: RequestProperty) {
       return next(boom.badRequest(error.message))
     }
 
-    req[property] = value
+    if (property !== 'query') {
+      req[property] = value
+    } else {
+      req.productQuery = value
+    }
     next()
   }
 }

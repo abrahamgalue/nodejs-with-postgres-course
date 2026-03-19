@@ -7,6 +7,9 @@ const description = Joi.string().min(10)
 const image = Joi.string().uri()
 const categoryId = Joi.number().integer()
 
+const limit = Joi.number().integer().min(0)
+const offset = Joi.number().integer().min(0)
+
 export const createProductScheme = Joi.object({
   name: name.required(),
   price: price.required(),
@@ -25,4 +28,9 @@ export const updateProductScheme = Joi.object({
 
 export const getProductScheme = Joi.object({
   id: id.required(),
+})
+
+export const queryProductScheme = Joi.object({
+  limit,
+  offset,
 })

@@ -7,15 +7,27 @@ import {
   createProductScheme,
   getProductScheme,
   updateProductScheme,
+  queryProductScheme,
 } from '../schemas/product.schema.js'
 
 const service = new ProductsService()
 
-router.get('/', async (req, res) => {
-  const products = await service.find()
+router.get(
+  '/',
+  validatorHandler(queryProductScheme, 'query'),
+  async (req, res) => {
+    const { limit, offset } = req.productQuery ?? {}
 
-  res.json(products)
-})
+    const options = {
+      limit: limit ? Number(limit) : undefined,
+      offset: offset ? Number(offset) : undefined,
+    }
+
+    const products = await service.find(options)
+
+    res.json(products)
+  },
+)
 
 router.get('/filter', (req, res) => {
   res.send('I am a filter')

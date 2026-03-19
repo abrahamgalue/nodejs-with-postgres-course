@@ -17,6 +17,8 @@ type CreateProductType = Omit<ProductType, 'id' | 'createdAt'>
 
 type UpdateProductType = Partial<CreateProductType>
 
+type queryProductType = { limit?: number; offset?: number }
+
 class ProductsService {
   constructor() {}
 
@@ -28,8 +30,12 @@ class ProductsService {
     return newProduct
   }
 
-  async find() {
-    const products = await models.Product.findAll({ include: ['category'] })
+  async find({ limit, offset }: queryProductType) {
+    const products = await models.Product.findAll({
+      include: ['category'],
+      limit: limit,
+      offset: offset,
+    })
 
     return products
   }
