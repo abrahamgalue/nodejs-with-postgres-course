@@ -16,12 +16,7 @@ router.get(
   '/',
   validatorHandler(queryProductScheme, 'query'),
   async (req, res) => {
-    const { limit, offset } = req.productQuery ?? {}
-
-    const options = {
-      limit: limit ? Number(limit) : undefined,
-      offset: offset ? Number(offset) : undefined,
-    }
+    const options = req.productQuery ?? {}
 
     const products = await service.find(options)
 
