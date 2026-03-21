@@ -1,6 +1,6 @@
 <div align='center'>
 
-# 💽 NODE/EXPRESS: Simple Store API
+# 💽 NODE/POSTGRES: Store API
 
 </div>
 
@@ -12,7 +12,7 @@
 
 ## 🚀 Descripción
 
-Este proyecto es el resultado de un curso completo de Node.js que realicé. Se trata de una API que permite gestionar el inventario de productos para una tienda virtual, utilizando datos simulados generados dinámicamente.
+Este proyecto es el resultado de un curso completo de Node.js con enfoque en bases de datos relacionales. Se trata de una API que permite gestionar el inventario de productos para una tienda virtual, utilizando **PostgreSQL** como motor de base de dato con la posibilidad de remplazarlo por **MySQL**, gestionados a través de **Sequelize**.
 
 ## ⚡ Comenzar
 
@@ -20,34 +20,46 @@ Este proyecto es el resultado de un curso completo de Node.js que realicé. Se t
 
 1. Git.
 2. Node.js: cualquier versión a partir de la 20 o superior.
-3. pnpm (recomendado)
+3. pnpm (recomendado).
+4. Docker Desktop (para la base de datos).
 
-## 🔧 Instalación
+## 🔧 Instalación y Configuración
 
-### Usando pnpm
+### 1. Preparar el entorno
 
-1. **Clona el repositorio:**
+Crea los archivos de variables de entorno necesarios basándote en los ejemplos:
 
-   ```bash
-   git clone https://github.com/abrahamgalue/simple-store-api.git
-   cd simple-store-api
-   ```
+- Copia `.env.example` a `.env` y configura tus variables locales.
+- Asegúrate de tener listos `postgres.env` y `MySQL.env` para la configuración de Docker.
 
-2. **Instala las dependencias:**
+### 2. Levantar la Base de Datos (Docker)
 
-   ```bash
-   pnpm install
-   ```
+El proyecto incluye un entorno de Docker para facilitar el uso de bases de datos y herramientas gráficas de gestión.
 
-### Ejecución local (modo desarrollo)
+```bash
+docker-compose up -d
+```
 
-1. **Inicia el servidor de desarrollo:**
+Esto levantará los siguientes servicios:
 
-   ```bash
-   pnpm run dev
-   ```
+- **PostgreSQL**: Puerto `5432`
+- **pgAdmin**: Interfaz gráfica para Postgres en `http://localhost:5050`
+- **MySQL**: Puerto `3306`
+- **phpMyAdmin**: Interfaz gráfica para MySQL en `http://localhost:8080`
 
-   Esto iniciará el servidor de desarrollo utilizando `tsx` y tu aplicación estará disponible en `http://localhost:3000`.
+### 3. Instalar dependencias
+
+```bash
+pnpm install
+```
+
+### 4. Ejecución local (modo desarrollo)
+
+```bash
+pnpm run dev
+```
+
+Esto iniciará el servidor de desarrollo utilizando `tsx` y tu aplicación estará disponible en `http://localhost:3000`.
 
 ## 🎭 Tecnologías
 
@@ -55,7 +67,11 @@ El proyecto utiliza las siguientes tecnologías:
 
 - [**Express**](https://expressjs.com/) como framework de Node.js.
 - [**TypeScript**](https://www.typescriptlang.org/) para el desarrollo con tipado estático.
-- [**Faker JS**](https://fakerjs.dev/) para generar datos aleatorios y realistas.
+- [**PostgreSQL**](https://www.postgresql.org/) y [**MySQL**](https://www.mysql.com/) como bases de datos.
+- [**Sequelize**](https://sequelize.org/) como ORM para la gestión de datos.
+- [**Docker**](https://www.docker.com/) para la orquestación de servicios y contenedores.
+- [**pgAdmin**](https://www.pgadmin.org/) y [**phpMyAdmin**](https://www.phpmyadmin.net/) como entornos gráficos de bases de datos.
+- [**Faker JS**](https://fakerjs.dev/) para generar datos aleatorios.
 - [**Joi**](https://joi.dev/) para la validación de esquemas de datos.
 - [**Boom**](https://hapi.dev/module/boom/) para el manejo de errores HTTP.
 - [**CORS**](https://github.com/expressjs/cors) para gestionar el acceso desde diferentes dominios.
